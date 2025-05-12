@@ -111,6 +111,11 @@ This option enables support for the draft KHR_physics_rigid_bodies <https://gith
 
 KHR_physics_rigid_bodies relies on KHR_implicit_shapes, so this option implicitly enables `FASTGLTF_ENABLE_IMPLICIT_SHAPES`
 
+``FASTGLTF_ENABLE_GLTFX``
+-------------------------
+
+Enables support for the draft glTFX Reference Format <https://github.com/KhronosGroup/glTF-External-Reference>
+
 Parsing options
 ===============
 

@@ -22,6 +22,7 @@ option(FASTGLTF_ENABLE_CPP_MODULES "Enables the fastgltf::module target, which u
 option(FASTGLTF_USE_STD_MODULE "Use the std module when compiling using C++ modules" OFF)
 option(FASTGLTF_ENABLE_KHR_IMPLICIT_SHAPES "Enable support for the experimental KHR_implicit_shapes extension" OFF)
 option(FASTGLTF_ENABLE_KHR_PHYSICS_RIGID_BODIES "Enable support for the experimental KHR_physics_rigid_bodies extension" OFF)
+option(FASTGLTF_ENABLE_GLTFX "Enable support for the draft glTFX spec" ON)
 
 if (FASTGLTF_COMPILE_AS_CPP20)
     set(FASTGLTF_COMPILE_TARGET cxx_std_20)
@@ -42,7 +43,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/compilers.cmake)
 # Create the library target
 set(FASTGLTF_HEADERS "include/fastgltf/base64.hpp" "include/fastgltf/core.hpp"
         "include/fastgltf/dxmath_element_traits.hpp" "include/fastgltf/glm_element_traits.hpp"
-        "include/fastgltf/tools.hpp" "include/fastgltf/types.hpp" "include/fastgltf/util.hpp" "include/fastgltf/math.hpp")
+        "include/fastgltf/tools.hpp" "include/fastgltf/types.hpp" "include/fastgltf/util.hpp" "include/fastgltf/math.hpp" "include/fastgltf/gltfx.hpp")
 add_library(fastgltf
     "src/fastgltf.cpp" "src/base64.cpp" "src/io.cpp" ${FASTGLTF_HEADERS})
 add_library(fastgltf::fastgltf ALIAS fastgltf)
@@ -119,7 +120,7 @@ target_compile_definitions(fastgltf PUBLIC "FASTGLTF_ENABLE_DEPRECATED_EXT=$<BOO
 target_compile_definitions(fastgltf PUBLIC "FASTGLTF_DISABLE_CUSTOM_MEMORY_POOL=$<BOOL:${FASTGLTF_DISABLE_CUSTOM_MEMORY_POOL}>")
 target_compile_definitions(fastgltf PUBLIC "FASTGLTF_USE_64BIT_FLOAT=$<BOOL:${FASTGLTF_USE_64BIT_FLOAT}>")
 target_compile_definitions(fastgltf PUBLIC "FASTGLTF_ENABLE_KHR_IMPLICIT_SHAPES=$<BOOL:${FASTGLTF_ENABLE_KHR_IMPLICIT_SHAPES}>")
-target_compile_definitions(fastgltf PUBLIC "FASTGLTF_ENABLE_KHR_PHYSICS_RIGID_BODIES=$<BOOL:${FASTGLTF_ENABLE_KHR_PHYSICS_RIGID_BODIES}>")
+target_compile_definitions(fastgltf PUBLIC "FASTGLTF_ENABLE_GLTFX=$<BOOL:${FASTGLTF_ENABLE_GLTFX}>")
 
 fastgltf_check_modules_support()
 if (FASTGLTF_ENABLE_CPP_MODULES AND FASTGLTF_SUPPORTS_MODULES AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.28")
